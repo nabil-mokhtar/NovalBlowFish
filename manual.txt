@@ -1,0 +1,166 @@
+Triple-Key Blowfish Encryption
+
+Project Structure
+
+The project directory contains the following files:
+
+$ tree
+.
+├── benchmark.py
+├── blowfish.jpg
+├── blowfish.py
+├── gui.py
+├── helper_functions.py
+├── main.py
+├── man.txt
+├── requirements.txt
+└── TripleBlowfish.py
+
+
+
+Requirements
+
+
+1. Install Python
+Ensure that Python is installed on your system. If it is not installed, download and install Python using the appropriate method for your operating system.
+
+2. Install Dependencies
+Open a terminal in the directory where the project files are located and run the following command to install the necessary packages:
+
+:~$ pip install -r requirements.txt
+
+
+
+How to Use
+
+
+- To run the project, use the following command in your terminal:
+
+:~$ python3 main.py
+
+
+
+Once executed, the script will prompt you to choose between encrypting a text or an image using the Triple-Key Blowfish encryption algorithm:
+
+:~$ Enter 0 to encrypt text, 1 to encrypt an image:
+
+
+
+Encrypting Text
+
+1. Enter 0 to encrypt text.
+
+2. The application will generate a random string as the text to be encrypted. This string can be customized with the following line:
+
+
+rand_string = ''.join(random.choices(string.ascii_uppercase + string.digits, k=100000))
+
+
+3. Example output when encrypting a random string:
+
+Original Text (first 10 chars): 4KSW29DC26
+Encrypted Text (first 10 bytes): 6b63c926473da7b4af00
+Decrypted Text (first 10 chars): 4KSW29DC26
+
+
+Encrypting an Image
+
+1. Enter 1 to encrypt an image.
+
+2. You will be prompted to enter the full path to the image file you want to encrypt:
+
+:~$ Enter the path of the image file to encrypt: /full/path/to/your/image.jpg
+
+3- The encrypted image and the decrypted image will both be saved in the same directory as the source image.
+
+
+
+Benchmarking
+
+
+You can benchmark the performance of various encryption and decryption algorithms using the benchmark.py script. Run the script with the following command:
+
+:~$ python3 benchmark.py
+
+The script will perform benchmarks for the following algorithms and output the results:
+
+
+
+CBC Mode Encryption and Decryption
+
+
+- Benchmarking encrypt_cbc
+
+10000 random bytes in 0.01792 sec
+10000 random bytes in 0.01897 sec
+10000 random bytes in 0.01687 sec
+10000 random bytes in 0.01935 sec
+10000 random bytes in 0.02697 sec
+10000 random bytes in 0.02001 sec (average)
+
+- Benchmarking decrypt_cbc:
+
+10000 random bytes in 0.02177 sec
+10000 random bytes in 0.02155 sec
+10000 random bytes in 0.02133 sec
+10000 random bytes in 0.01915 sec
+10000 random bytes in 0.01824 sec
+10000 random bytes in 0.02041 sec (average)
+
+
+
+
+Triple-Key Blowfish Encryption and Decryption
+
+- Benchmarking encrypt_text_triple_blowfish:
+
+10000 random bytes in 0.08953 sec
+10000 random bytes in 0.06500 sec
+10000 random bytes in 0.06526 sec
+10000 random bytes in 0.05713 sec
+10000 random bytes in 0.04344 sec
+10000 random bytes in 0.06407 sec (average)
+
+
+- Benchmarking decrypt_text_triple_blowfish:
+
+10000 random bytes in 0.05065 sec
+10000 random bytes in 0.07105 sec
+10000 random bytes in 0.05591 sec
+10000 random bytes in 0.05827 sec
+10000 random bytes in 0.06196 sec
+10000 random bytes in 0.05957 sec (average)
+
+
+- Benchmarking encrypt_image_triple_blowfish:
+
+Encrypted image saved to encrypted_fish.jpg
+Image 1024 * 793 in 0.63568 sec
+Encrypted image saved to encrypted_fish.jpg
+Image 1024 * 793 in 0.66269 sec
+Encrypted image saved to encrypted_fish.jpg
+Image 1024 * 793 in 0.64372 sec
+Encrypted image saved to encrypted_fish.jpg
+Image 1024 * 793 in 0.62553 sec
+Encrypted image saved to encrypted_fish.jpg
+Image 1024 * 793 in 0.60770 sec
+Image 1024 * 793 in 0.63506 sec (average)
+
+- Benchmarking decrypt_image_triple_blowfish:
+
+Decrypted image saved to decrypted_fish.jpg
+Image 1024 * 793 in 0.60871 sec
+Decrypted image saved to decrypted_fish.jpg
+Image 1024 * 793 in 0.57858 sec
+Decrypted image saved to decrypted_fish.jpg
+Image 1024 * 793 in 0.62017 sec
+Decrypted image saved to decrypted_fish.jpg
+Image 1024 * 793 in 0.64028 sec
+Decrypted image saved to decrypted_fish.jpg
+Image 1024 * 793 in 0.65398 sec
+Image 1024 * 793 in 0.62034 sec (average)
+
+
+summary: The benchmark.py script tests all the algorithms six times and provides the average time taken for each operation.
+
+
