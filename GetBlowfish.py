@@ -13,15 +13,19 @@ class GetBlowfish:
     def encrypt_image(self, image_path, output_path):
         image_bytes = image_to_bytes(image_path)
 
+        # Pad the image bytes
         padded_image_bytes = pkcs7_pad(image_bytes)
 
-
+        # Encrypt the image
         encrypted_bytes = bytearray()
-        for i in range(0, len(padded_image_bytes), 8):
+        for i in range(0, len(padded_image_bytes), 8):  # 8 bytes per block
             block = padded_image_bytes[i:i + 8]
-            encrypted_block = self.cipher.encrypt_cbc(block, self.iv)
+            if len(block) < 8:
+                raise ValueError("Block size is incorrect")
+            encrypted_block = b"".join(self.cipher.encrypt_cbc(block, self.iv))  # Ensure proper format
             encrypted_bytes.extend(encrypted_block)
 
+        # Save the encrypted bytes as an image
         bytes_to_image(encrypted_bytes, output_path)
         print(f"Encrypted image saved to {output_path}")
         return encrypted_bytes
